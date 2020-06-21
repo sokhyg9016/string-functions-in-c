@@ -26,18 +26,6 @@ Referred by apple open source
  * 
  * @APPLE_LICENSE_HEADER_END@
  */
-/* Copyright (c) 1992, 1997 NeXT Software, Inc.  All rights reserved.
- * 
- *	File:	libc/gen/ppc/strcpy.c
- *
- *	This file contains machine dependent code for string copy
- *
- * HISTORY
- *  24-Jan-1997 Umesh Vaishampayan (umeshv@NeXT.com)
- *	Ported to PPC.
- * 24-Nov-92  Derek B Clegg (dclegg@next.com)
- *	Created.
- */
 ```
 
 ## strcmp
