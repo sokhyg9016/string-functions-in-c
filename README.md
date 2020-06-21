@@ -51,3 +51,46 @@ size_t strlen(str)
 }
 ```
 
+## strcpy
+
+```c
+char * strcpy(to, from)
+	register char *to;
+	register const char *from;
+{
+	char *save = to;
+
+	for (; *to = *from; ++from, ++to);
+	return(save);
+}
+```
+
+## strncpy
+
+```c
+/*
+ * Copy src to dst, truncating or null-padding to always copy n bytes.
+ * Return dst.
+ */
+char *
+strncpy(dst, src, n)
+	char *dst;
+	const char *src;
+	register size_t n;
+{
+	if (n != 0) {
+		register char *d = dst;
+		register const char *s = src;
+
+		do {
+			if ((*d++ = *s++) == 0) {
+				/* NUL pad the remaining n-1 bytes */
+				while (--n != 0)
+					*d++ = 0;
+				break;
+			}
+		} while (--n != 0);
+	}
+	return (dst);
+}
+```
