@@ -1,9 +1,9 @@
 # string-functions-in-c
+2020-06-21
+
 Referred by apple open source
 
-- [APPLE SOURCE BROWSER](https://opensource.apple.com/source/Libc/Libc-262/i386/gen/)
-- [Apple source browser:other version](https://opensource.apple.com/source/Libc/Libc-262/ppc/gen/)
-
+[APPLE SOURCE BROWSER](https://opensource.apple.com/source/Libc/Libc-262/i386/gen/)
 ```
 /*
  * Copyright (c) 1999 Apple Computer, Inc. All rights reserved.
@@ -26,6 +26,10 @@ Referred by apple open source
  * 
  * @APPLE_LICENSE_HEADER_END@
  */
+ ```
+ 
+[Apple source browser:other version](https://opensource.apple.com/source/Libc/Libc-262/ppc/gen/)
+``` 
 /*
  * Copyright (c) 1990, 1993
  *	The Regents of the University of California.  All rights reserved.
