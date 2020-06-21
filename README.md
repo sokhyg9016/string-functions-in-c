@@ -127,6 +127,21 @@ char * strcpy(to, from)
 	for (; *to = *from; ++from, ++to);
 	return(save);
 }
+
+/* ANSI sez:
+ *   The `strcpy' function copies the string pointed to by `s2' (including
+ *   the terminating null character) into the array pointed to by `s1'.
+ *   If copying takes place between objects that overlap, the behavior
+ *   is undefined.
+ *   The `strcpy' function returns the value of `s1'.  [4.11.2.3]
+ */
+char *strcpy(char *s1, const char *s2)
+{
+    char *s = s1;
+    while ((*s++ = *s2++) != 0)
+	;
+    return (s1);
+}
 ```
 
 ## strncpy
@@ -157,6 +172,30 @@ strncpy(dst, src, n)
 	}
 	return (dst);
 }
+
+/* ANSI sez:
+ *   The `strncpy' function copies not more than `n' characters (characters
+ *   that follow a null character are not copied) from the array pointed to
+ *   by `s2' to the array pointed to by `s1'.  If copying takes place between
+ *   objects that overlap, the behavior is undefined.
+ *   If the array pointed to by `s2' is a string that is shorter than `n'
+ *   characters, null characters are appended to the copy in the array
+ *   pointed to by `s1', until `n' characters in all have been written.
+ *   The `strncpy' function returns the value of `s1'.  [4.11.2.4]
+ */
+char *strncpy(char *s1, const char *s2, size_t n)
+{
+    char *s = s1;
+    while (n > 0 && *s2 != '\0') {
+	*s++ = *s2++;
+	--n;
+    }
+    while (n > 0) {
+	*s++ = '\0';
+	--n;
+    }
+    return s1;
+}
 ```
 
 ## strcat
@@ -172,6 +211,12 @@ strcat(s, append)
 	for (; *s; ++s);
 	while (*s++ = *append++);
 	return(save);
+}
+
+char *strcat(char *s1, const char *s2)
+{
+    strcpy(&s1[strlen(s1)], s2);
+    return s1;
 }
 ```
 
@@ -202,5 +247,19 @@ strncat(dst, src, n)
 		*d = 0;
 	}
 	return (dst);
+}
+
+char *strncat(char *s1, const char *s2, size_t n)
+{
+    unsigned len1 = strlen(s1);
+    unsigned len2 = strlen(s2);
+    
+    if (len2 < n) {
+	strcpy(&s1[len1], s2);
+    } else {
+	strncpy(&s1[len1], s2, n);
+	s1[len1 + n] = '\0';
+    }
+    return s1;
 }
 ```
